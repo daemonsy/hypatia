@@ -3,10 +3,9 @@ defmodule Hypatia.Job do
   import Ecto.Changeset
   alias Hypatia.Job
 
-
   schema "jobs" do
     field :enabled, :boolean, default: false
-    field :title, :string
+    field :title, :string, null: false
 
     timestamps()
   end
