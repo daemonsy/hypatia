@@ -51,8 +51,7 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :hypatia, Hypatia.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: System.cmd("whoami", []) |> elem(0) |> String.replace("\n", ""),
   database: "hypatia_dev",
   hostname: "localhost",
   pool_size: 10
