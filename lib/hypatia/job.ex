@@ -4,7 +4,6 @@ defmodule Hypatia.Job do
   alias Hypatia.Job
 
   schema "jobs" do
-    field :enabled, :boolean, default: false
     field :title, :string, null: false
 
     timestamps()

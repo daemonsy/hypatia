@@ -9,6 +9,11 @@ defmodule HypatiaWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  forward "/graphiql",
+    Absinthe.Plug.GraphiQL,
+    schema: Hypatia.Graph.Schema,
+    interface: :simple
+
   pipeline :api do
     plug :accepts, ["json"]
   end
