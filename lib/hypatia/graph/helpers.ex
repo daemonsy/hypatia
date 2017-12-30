@@ -6,7 +6,7 @@ defmodule Hypatia.Schema.Helpers do
 
     model
     |> where([m], m.id in ^ids)
-    |> Repo.all
+    |> Hypatia.Repo.all
     |> Map.new(&{&1.id, &1})
   end
 end
