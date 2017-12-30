@@ -6,7 +6,7 @@ defmodule Hypatia.Seeds.Jobs do
   defp create_beer_taster(total, counter) when total == counter, do: true
 
   defp create_beer_taster(total, counter) do
-    Hypatia.Repo.insert!(%Hypatia.Job{ title: "#{Faker.Beer.name} Taster", enabled: true })
+    Hypatia.Repo.insert!(%Hypatia.Job{ title: "#{Faker.Beer.name} Taster" })
     create_beer_taster(total, counter + 1)
   end
 end

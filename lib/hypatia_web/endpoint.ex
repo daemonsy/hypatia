@@ -1,6 +1,8 @@
 defmodule HypatiaWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :hypatia
 
+  plug CORSPlug
+
   socket "/socket", HypatiaWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.

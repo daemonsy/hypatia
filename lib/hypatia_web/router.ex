@@ -9,6 +9,11 @@ defmodule HypatiaWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :api do
+    plug :accepts, ["json"]
+    plug :put_secure_browser_headers
+  end
+
   forward "/graphiql",
     Absinthe.Plug.GraphiQL,
     schema: Hypatia.Graph.Schema,
@@ -22,6 +27,10 @@ defmodule HypatiaWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+  end
+
+  scope "/api", HypatiaWeb do
+    post "/graphql", GraphController, :execute
   end
 
   # Other scopes may use custom stacks.
