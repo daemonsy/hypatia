@@ -1,7 +1,8 @@
+alias Hypatia.Repo, as: Repo
 
 Hypatia.Seeds.Jobs.create_beer_taster(10)
   |> Enum.each(fn(job) ->
-    Hypatia.Repo.insert!(
+    Repo.insert!(
       %Hypatia.Job.Application{
         candidate: %Hypatia.Candidate{
           first_name: Faker.Name.first_name,
@@ -10,3 +11,12 @@ Hypatia.Seeds.Jobs.create_beer_taster(10)
         }
       }
   ) end)
+
+Repo.insert!(
+  %Hypatia.Job{
+    title: "Economist",
+    fieldset: %Hypatia.Fieldset{
+      fields: ["cover letter"] |> Enum.map(fn(field) -> %Hypatia.Field{name: field, type: "text" } end)
+    }
+  }
+)
