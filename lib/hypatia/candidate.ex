@@ -7,7 +7,7 @@ defmodule Hypatia.Candidate do
     field :first_name, :string
     field :last_name, :string
     field :email, :string
-    has_many :job_applications, Hypatia.Job.Application
+    has_many :job_applications, Hypatia.JobApplication
     timestamps()
   end
 

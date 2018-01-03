@@ -12,8 +12,7 @@ config :logger, level: :warn
 # Configure your database
 config :hypatia, Hypatia.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: System.cmd("whoami", []) |> elem(0) |> String.replace("\n", ""),
   database: "hypatia_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
