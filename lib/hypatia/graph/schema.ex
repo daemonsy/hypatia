@@ -1,8 +1,11 @@
 defmodule Hypatia.Graph.Schema do
   use Absinthe.Schema
 
+  import_types Hypatia.Graph.Scalars.JSON
   import_types Hypatia.Graph.Types.Candidate
-  import_types Hypatia.Graph.Types
+  import_types Hypatia.Graph.Types.Job
+  import_types Hypatia.Graph.Mutations.JobApplication
+  import_types Hypatia.Graph.Types.JobApplication
 
   query do
     field :candidate, :candidate do
@@ -19,5 +22,9 @@ defmodule Hypatia.Graph.Schema do
         {:ok, Hypatia.Repo.all(Hypatia.Job)}
       end
     end
+  end
+
+  mutation do
+    import_fields :job_application_mutations #Hypatia.Graph.Mutations.CreateJobApplication
   end
 end

@@ -5,6 +5,7 @@ defmodule Hypatia.JobApplication do
 
   schema "job_applications" do
     belongs_to :candidate, Hypatia.Candidate
+    belongs_to :job, Hypatia.Job
     field :data, :map
 
     timestamps()

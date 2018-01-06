@@ -6,6 +6,7 @@ defmodule Hypatia.Job do
   schema "jobs" do
     field :title, :string, null: false
     has_many :candidates, Hypatia.Candidate
+    has_many :job_applications, Hypatia.JobApplication
     has_one :fieldset, Hypatia.Fieldset
 
     timestamps()

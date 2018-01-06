@@ -4,7 +4,7 @@ Hypatia.Seeds.Jobs.create_beer_taster(10)
   |> Enum.each(fn(job) ->
     Repo.insert!(
       %Hypatia.JobApplication{
-        data: %{},
+        data: %{ phone: "12345" },
         candidate: %Hypatia.Candidate{
           first_name: Faker.Name.first_name,
           last_name: Faker.Name.last_name,
