@@ -1,35 +1,24 @@
 defmodule Hypatia.JobApplication do
   use Ecto.Schema
   import Ecto.Changeset
+  import Enum, only: [map: 2, filter: 2]
   alias Hypatia.JobApplication
+  alias Hypatia.FieldEntry
 
   schema "job_applications" do
     belongs_to :candidate, Hypatia.Candidate
     belongs_to :job, Hypatia.Job
-    field :data, :map
+    embeds_many :fields, FieldEntry
 
     timestamps()
   end
 
   @doc false
-  def data_changeset(%{} = data, %{} = changes, fields) do
-    all_fields = fields
-    |> Enum.map(fn(field) -> {field.name, field.type} end)
-    |> Map.new
-
-    required_fields = fields
-    |> Enum.filter(fn(field) -> field.required end)
-    |> Enum.map(fn(field) -> field.name end)
-
-    {data, all_fields}
-    |> cast(changes, Map.keys(all_fields))
-    |> validate_required(required_fields)
-  end
-
-  @doc false
-  def changeset(%JobApplication{} = job_applications, attrs) do
-    job_applications
+  def changeset(%JobApplication{} = job_application, attrs) do
+    job_application
     |> cast(attrs, [])
-    |> validate_required([])
+    |> cast_assoc(:job)
+    |> cast_assoc(:candidate)
+    |> cast_embed(:fields, required: true, with: &FieldEntry.changeset/2)
   end
 end

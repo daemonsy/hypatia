@@ -4,6 +4,6 @@ defmodule Hypatia.Graph.Types.JobApplication do
   object :job_application do
     description "A candidate's application for a job"
     field :id, :id
-    field :data, :json
+    field :fields, :json
   end
 end

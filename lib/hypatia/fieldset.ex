@@ -3,13 +3,15 @@ defmodule Hypatia.Fieldset do
   import Ecto.Changeset
   alias Hypatia.Fieldset
 
-
   schema "fieldsets" do
     field :name, :string
     has_many :fields, Hypatia.Field
     belongs_to :job, Hypatia.Job
 
     timestamps()
+  end
+
+  def meets_fields_requirements(%Fieldset{} = fieldset, %{} = data) do
   end
 
   @doc false

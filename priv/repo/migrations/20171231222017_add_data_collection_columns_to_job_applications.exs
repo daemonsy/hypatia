@@ -3,7 +3,7 @@ defmodule Hypatia.Repo.Migrations.AddDataCollectionColumnsToJobApplications do
 
   def change do
     alter table("job_applications") do
-      add :data, :jsonb, null: false
+      add :fields, { :array, :map }, default: [], null: false
     end
   end
 end
