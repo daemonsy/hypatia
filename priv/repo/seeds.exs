@@ -1,5 +1,4 @@
-alias Hypatia.Repo
-alias Hypatia.Field
+alias Hypatia.{Repo, JobApplication, Field, FieldEntry}
 
 jobs = Hypatia.Seeds.Jobs.create_beer_taster(10)
 
@@ -16,8 +15,8 @@ end)
 jobs
 |> Enum.each(fn(job) ->
   Repo.insert!(
-    %Hypatia.JobApplication{
-      fields: [%{ phone: "12345" }],
+    %JobApplication{
+      fields: [%FieldEntry{ name: "phone", type: "text", required: false, answer: "+19173514206" }],
       job: job,
       candidate: %Hypatia.Candidate{
         first_name: Faker.Name.first_name,

@@ -3,21 +3,21 @@ defmodule Hypatia.FieldEntry do
   import Ecto.Changeset
   alias Hypatia.FieldEntry
 
-  @primary_key false
-  embedded_schema do
+  schema "field_entries" do
+    field :uuid, Ecto.UUID, read_after_writes: true
     field :name, :string
     field :type, :string
     field :question, :string
     field :required, :boolean
     field :answer
-    field :notes, :string
-    field :meta, :map
-    field :uuid, Ecto.UUID
+    # field :notes, :string
+    # field :meta, :map
+    timestamps
   end
 
   def changeset(%FieldEntry{} = field, attributes) do
     field
-    |> cast(attributes, [:name, :type, :question, :answer, :meta, :required])
+    |> cast(attributes, [:name, :type, :question, :answer, :required])
     |> validate_required([:name, :type, :required])
     |> validate_inclusion(:type, Hypatia.Field.supported_types)
     |> validate_required_answer_present

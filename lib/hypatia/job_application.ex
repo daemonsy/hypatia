@@ -8,7 +8,7 @@ defmodule Hypatia.JobApplication do
   schema "job_applications" do
     belongs_to :candidate, Hypatia.Candidate
     belongs_to :job, Hypatia.Job
-    embeds_many :fields, FieldEntry
+    has_many :fields, FieldEntry
 
     timestamps()
   end
@@ -18,7 +18,7 @@ defmodule Hypatia.JobApplication do
     job_application
     |> cast(attrs, [])
     |> cast_assoc(:job)
-    |> cast_assoc(:candidate)
-    |> cast_embed(:fields, required: true, with: &FieldEntry.changeset/2)
+    |> cast_assoc(:candidate, required: true)
+    |> cast_assoc(:fields, required: true, with: &FieldEntry.changeset/2)
   end
 end
