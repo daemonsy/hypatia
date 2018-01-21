@@ -3,7 +3,7 @@ defmodule Hypatia.Repo.Migrations.CreateFieldEntries do
 
   def change do
     create table(:field_entries) do
-      add :uuid, :uuid, default: fragment("gen_random_uuid()")
+      add :uuid, :uuid, null: false
       add :job_application_id, references("job_applications")
       add :name, :string, null: false
       add :type, :string, null: false
