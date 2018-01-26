@@ -45,7 +45,8 @@ defmodule Hypatia.Mixfile do
       {:absinthe, "~> 1.4.0"},
       {:absinthe_plug, "~> 1.4"},
       {:poison, "~> 3.1"},
-      {:faker, "~> 0.9.0", only: :dev}
+      {:faker, "~> 0.9.0", only: [:dev, :test]},
+      {:ex_machina, "~> 2.1", only: :test}
     ]
   end
 

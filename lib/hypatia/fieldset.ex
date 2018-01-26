@@ -3,7 +3,6 @@ defmodule Hypatia.Fieldset do
   import Ecto.Changeset
   alias Hypatia.Fieldset
 
-
   schema "fieldsets" do
     field :name, :string
     has_many :fields, Hypatia.Field
@@ -11,6 +10,7 @@ defmodule Hypatia.Fieldset do
 
     timestamps()
   end
+
 
   @doc false
   def changeset(%Fieldset{} = fieldset, attrs) do

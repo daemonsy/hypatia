@@ -7,6 +7,8 @@ defmodule Hypatia.Repo.Migrations.CreateFields do
       add :uuid, :uuid, default: fragment("gen_random_uuid()")
       add :name, :string, null: false
       add :type, :string, null: false
+      add :question, :string
+      add :required, :boolean, null: false, default: false
       add :fieldset_id, references(:fieldsets, on_delete: :delete_all)
 
       timestamps()

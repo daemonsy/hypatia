@@ -6,6 +6,7 @@ defmodule Hypatia.Graph.Schema do
   import_types Hypatia.Graph.Types.Job
   import_types Hypatia.Graph.Mutations.JobApplication
   import_types Hypatia.Graph.Types.JobApplication
+  import_types Hypatia.Graph.Types.FieldEntry
 
   query do
     field :candidate, :candidate do
