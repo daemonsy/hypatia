@@ -11,8 +11,6 @@ defmodule Hypatia.Fieldset do
     timestamps()
   end
 
-  def meets_fields_requirements(%Fieldset{} = fieldset, %{} = data) do
-  end
 
   @doc false
   def changeset(%Fieldset{} = fieldset, attrs) do
