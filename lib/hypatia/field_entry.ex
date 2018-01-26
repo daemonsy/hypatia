@@ -10,7 +10,6 @@ defmodule Hypatia.FieldEntry do
     field :question, :string
     field :required, :boolean
     field :answer
-
     timestamps
   end
 
