@@ -10,7 +10,8 @@ defmodule Hypatia.FieldEntry do
     field :question, :string
     field :required, :boolean
     field :answer
-    timestamps
+
+    timestamps()
   end
 
   def changeset(%FieldEntry{} = field, attributes) do
@@ -26,7 +27,7 @@ defmodule Hypatia.FieldEntry do
     |> validate_required([:answer])
   end
 
-  defp validate_required_answer_present(%Ecto.Changeset{ changes: %{ required: _ } } = changeset) do
+  defp validate_required_answer_present(%Ecto.Changeset{ changes: %{ required: false } } = changeset) do
     changeset
   end
 end

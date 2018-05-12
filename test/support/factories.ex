@@ -1,6 +1,6 @@
 defmodule Hypatia.Factories do
   use ExMachina.Ecto, repo: Hypatia.Repo
-  alias Hypatia.{Job, Candidate, Fieldset, JobApplication, Field}
+  alias Hypatia.{Job, Candidate, Fieldset, JobApplication, Field, FieldEntry}
 
   def job_factory(title \\ "#{Faker.Beer.name} Taster") do
     %Job{
@@ -22,6 +22,7 @@ defmodule Hypatia.Factories do
     %Field{
       name: "Phone Number",
       type: "text",
+      question: "What is the best phone number to reach you?",
       required: false,
       uuid: Ecto.UUID.generate
     }
@@ -33,6 +34,22 @@ defmodule Hypatia.Factories do
       type: "text",
       required: true,
       uuid: Ecto.UUID.generate
+    }
+  end
+
+  def gpa_field_entry_factory do
+    %FieldEntry{
+      name: "GPA",
+      type: "text",
+      answer: Enum.random(1..5) |> Integer.to_string
+    }
+  end
+
+  def phone_field_entry_factory do
+    %FieldEntry{
+      name: "Phone Number",
+      type: "text",
+      answer: Faker.Phone.EnUs.phone
     }
   end
 

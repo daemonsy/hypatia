@@ -1,3 +1,5 @@
+import Hypatia.Factories
+
 alias Hypatia.{Repo, JobApplication, Field, FieldEntry}
 
 jobs = Hypatia.Seeds.Jobs.create_beer_taster(10)
@@ -5,9 +7,8 @@ jobs = Hypatia.Seeds.Jobs.create_beer_taster(10)
 jobs
 |> Enum.map(fn(job) ->
   Ecto.build_assoc(job, :fieldset, name: "default", fields: [
-    %Field{ name: "phone", type: "text", required: true },
-    %Field{ name: "Cover Letter", type: "text" },
-    %Field{ name: "email", type: "email" } # This is wrong, not a supported type
+    %Field{ name: "Phone Number", question: "What is the best phone number to reach you?" type: "text", required: true },
+    %Field{ name: "Cover Letter", type: "text" }
   ])
 end)
 |> Enum.each(fn(fieldset) -> Repo.insert!(fieldset) end)
@@ -16,7 +17,8 @@ jobs
 |> Enum.each(fn(job) ->
   Repo.insert!(
     %JobApplication{
-      fields: [%FieldEntry{ name: "phone", type: "text", required: false, answer: "+19173514206" }],
+      fields: [
+        %FieldEntry{ name: "Phone Number", type: "text", required: false, answer: "+19173514206" }],
       job: job,
       candidate: %Hypatia.Candidate{
         first_name: Faker.Name.first_name,
